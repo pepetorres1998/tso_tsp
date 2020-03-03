@@ -6,9 +6,9 @@ if __FILE__ == $0
   matrix = MatrixParser.new('./matrix.csv')
   paths = matrix.lines.map.with_index do |line, from|
     line.split(',').map.with_index do |distance, to|
-      Path.new(distance, from, to)
+      Path.new(distance, from, to) unless distance.to_i.zero?
     end
-  end.flatten!
+  end.flatten!.reject!(&:nil?)
 
-  puts paths
+  pp paths.map { |path| JSON.parse(path.to_hash.to_json) }
 end
