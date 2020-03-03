@@ -2,11 +2,18 @@ class Path
   attr_reader :from, :to, :distance
 
   def initialize(distance, from, to)
-    @distance = distance
+    @distance = distance.to_i
     @from = from
     @to = to
   end
 
-  def to_s
+  def to_hash
+    hash = {}
+
+    instance_variables.each do |var|
+      hash[var.to_s.delete('@')] = instance_variable_get(var)
+    end
+
+    hash
   end
 end
