@@ -10,5 +10,6 @@ if __FILE__ == $0
     end
   end.flatten!.reject!(&:nil?)
 
-  pp paths.map { |path| JSON.parse(path.to_hash.to_json) }
+  pp paths.map { |path| path.as_json }
+  binding.pry
 end

@@ -16,4 +16,8 @@ class Path
 
     hash
   end
+
+  def as_json
+    JSON.parse(self.to_hash.to_json)
+  end
 end
